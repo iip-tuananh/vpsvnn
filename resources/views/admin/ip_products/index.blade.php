@@ -113,13 +113,18 @@
             {data: 'data_center', title: "Data center"},
             {data: 'status', title: "Trạng thái"},
             {data: 'payment_status', title: "Trạng thái thanh toán"},
-            {data: 'note', title: "Ghi chú"},
+            {data: 'note', title: "Ghi chú", width: '15%'},
             {data: 'action', orderable: false, title: "Hành động"}
         ];
 
         if ({{ Auth::user()->type }} == @json(\App\Model\Common\User::KHACH_HANG)) {
             columns.splice(4, 1);
             columns.splice(9, 1);
+        }
+        if ({{ Auth::user()->type }} != @json(\App\Model\Common\User::KHACH_HANG)) {
+            columns.splice(2, 1);
+            columns.splice(2, 1);
+            columns.splice(5, 1);
         }
         let datatable = new DATATABLE('table-list', {
             ajax: {
@@ -166,10 +171,8 @@
                 @endif
             ],
             @if(Auth::user()->is_customer)
-            act: {
-                create_ticket: true,
-                renew: true,
-            },
+            create_ticket: true,
+            renew: true,
             @endif
             @if(!Auth::user()->is_customer)
             create_modal: "create-ip-product",
@@ -368,7 +371,6 @@
             mergeSearch(data, datatable.context[0]);
             window.location.href = $(this).attr('href') + "?" + $.param(data) + "&product_pdf_ids=" + product_pdf_ids;
         })
-
     </script>
     @include('partial.confirm')
 @endsection

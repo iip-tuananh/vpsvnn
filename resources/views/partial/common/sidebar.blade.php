@@ -68,7 +68,7 @@
                     <li class="nav-item">
                         <a href="{{ route('Product.index') }}" class="nav-link {{ Request::routeIs('Product.create') ? 'active' : '' }}">
                             <i class="far fas  fa-angle-right nav-icon"></i>
-                            <p>Danh sách VPS</p>
+                            <p>Danh sách Plan</p>
                         </a>
                     </li>
                     <li class="nav-item">

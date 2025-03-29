@@ -5,11 +5,11 @@
 @endsection
 
 @section('title')
-    Chỉnh sửa VPS
+    Chỉnh sửa Plan
 @endsection
 
 @section('page_title')
-    Chỉnh sửa VPS
+    Chỉnh sửa Plan
 @endsection
 
 @section('content')

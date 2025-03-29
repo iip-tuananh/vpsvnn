@@ -68,7 +68,7 @@ class IpProductController extends Controller
                 return getStatus($object->payment_status, ThisModel::PAYMENT_STATUSES);
             })
             ->addColumn('customer_name', function ($object) {
-                return $object->user ? $object->user->name . ' - ' . $object->user->phone_number : '';
+                return '<a href="'.route('User.edit', $object->user->id).'" title="'.$object->user->account_name.'" target="_blank">'.$object->user->account_name.'</a>';
             })
             ->addColumn('note', function ($object) {
                 if ($object->tickets->count() > 0) {

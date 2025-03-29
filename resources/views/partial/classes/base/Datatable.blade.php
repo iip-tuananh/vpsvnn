@@ -93,6 +93,12 @@
                     <i class="fa fa-plus"></i> Tạo mới
                 </a>`;
             }
+            if (options.create_ticket) {
+                html += `<a href="javascript:void(0)" title="" class="btn btn-warning act-create-ticket mr-1" ng-click="createTicketArr();"><i class="fa fa-tags"></i> Tạo ticket</a>`;
+            }
+            if (options.renew) {
+                html += `<a href="javascript:void(0)" title="" class="btn btn-success act-renew mr-1" onclick="renewArr();"><i class="fa fa-sync"></i> Gia hạn</a>`;
+            }
             if (options.act) {
                 html += `
                 <button class="btn btn-info dropdown-toggle btn-remove" type="button"

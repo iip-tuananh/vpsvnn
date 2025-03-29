@@ -6,11 +6,11 @@
 @endsection
 
 @section('page_title')
-    Quản lý VPS
+    Quản lý Plan
 @endsection
 
 @section('title')
-    Quản lý VPS
+    Quản lý Plan
 @endsection
 
 @section('buttons')

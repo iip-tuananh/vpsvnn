@@ -166,7 +166,7 @@ class UserController extends Controller
 		$rule = [
 			'name' => 'required',
 			'email' => 'required|email|unique:users,email,'.$id,
-            'account_name' => 'required||unique:users,account_name,'.$id,
+            'account_name' => 'required|unique:users,account_name,'.$id,
             'password' => 'nullable|min:6|regex:/^[a-zA-Z0-9\@\$\!\%\*\#\?\&]+$/',
 			'password_confirm' => 'required_with:password|same:password',
 			'status' => 'required|in:0,1',

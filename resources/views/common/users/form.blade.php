@@ -43,7 +43,7 @@
                             <input class="form-control" type="text" ng-model="form.phone_number">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    {{-- <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Số tài khoản ngân hàng</label>
                             <input class="form-control" type="text" ng-model="form.bank_account_number">
@@ -54,16 +54,16 @@
                             <label class="form-label">Địa chỉ</label>
                             <input class="form-control" type="text" ng-model="form.address">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="form-label">Tên chủ tài khoản ngân hàng</label>
+                            <label class="form-label">Facebook</label>
                             <input class="form-control" type="text" ng-model="form.bank_account_name">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="form-label">Tên ngân hàng</label>
+                            <label class="form-label">Telegram</label>
                             <input class="form-control" type="text" ng-model="form.bank_name">
                         </div>
                     </div>

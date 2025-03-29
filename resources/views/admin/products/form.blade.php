@@ -52,7 +52,7 @@
             </span>
         </div> --}}
         <div class="form-group custom-group mb-4">
-            <label class="form-label" ng-class="{'required-label': form.type == 0}">Danh mục VPS</label>
+            <label class="form-label" ng-class="{'required-label': form.type == 0}">Danh mục Plan</label>
             <ui-select class="" remove-selected="true" ng-model="form.cate_id" theme="select2" ng-change="changeCategory(form.cate_id)">
                 <ui-select-match placeholder="Chọn danh mục">
                     <% $select.selected.name %>
@@ -69,7 +69,7 @@
         </div>
 
         <div class="form-group custom-group mb-4">
-            <label class="form-label required-label">Tên VPS (Plan)</label>
+            <label class="form-label required-label">Tên Plan</label>
             <input class="form-control " type="text" ng-model="form.name">
             <span class="invalid-feedback d-block" role="alert">
                 <strong>
@@ -78,7 +78,7 @@
             </span>
         </div>
         <div class="form-group">
-            <label class="form-label">Cấu hình VPS</label>
+            <label class="form-label">Cấu hình Plan</label>
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group custom-group">
@@ -126,7 +126,7 @@
                 </div>
                 <div class="col-md-2">
                     <div class="form-group custom-group">
-                        <label class="form-label">Stream</label>
+                        <label class="form-label">IPv4</label>
                         <input class="form-control" ng-model="form.stream" type="text">
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>
@@ -245,7 +245,7 @@
 
         {{-- <div class="col-md-12">
             <div class="form-group">
-                <label>Cấu hình VPS</label>
+                <label>Cấu hình Plan</label>
                 <button class="btn btn-info btn-sm float-right" ng-click="form.addAttribute()">
                     <i class="fa fa-plus"></i> Thêm
                 </button>
