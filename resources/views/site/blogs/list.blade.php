@@ -12,7 +12,7 @@
 @section('content')
     <main>
         <!--page-title-area start-->
-        <div class="page-title-area pt-100 pb-md-60"
+        {{-- <div class="page-title-area pt-100 pb-md-60"
             data-background="/site/images/page-title-shadow-bg-1a.png">
             <img class="shape__p1" src="/site/images/ht-star-2b.svg" alt="Shape" loading="lazy">
             <img class="shape__p2" src="/site/images/ht-star-2b.svg" alt="Shape" loading="lazy">
@@ -45,10 +45,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--page-title-area end-->
         <!-- blog__grid__section start -->
-        <div class="blog__grid__section pt-150 pb-120 pt-lg-120 pb-lg-90">
+        <div class="blog__grid__section pt-50 pb-50 pt-lg-60 pb-lg-80">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
                     @foreach ($blogs as $blog)
@@ -61,12 +61,12 @@
                                 </div>
                             </div>
                             <div class="ht-blog__content">
-                                <h3 class="blog-title mb-3 pb-20"><a href="{{ route('front.detail-blog', $blog->slug) }}">{{ $blog->name }}</a>
+                                <h3 class="blog-title mb-3 pb-20 text-dark"><a href="{{ route('front.detail-blog', $blog->slug) }}">{{ $blog->name }}</a>
                                 </h3>
                                 <div class="ht-blog__meta pb-2 mb-10">
-                                    <span><a href="#"><img src="/site/images/icon-1a.svg" alt="icon" loading="lazy">
+                                    <span><a href="#" class="text-dark"><img src="/site/images/icon-1a.svg" alt="icon" loading="lazy">
                                             Admin</a></span>
-                                    <span><a href="#"><img src="/site/images/icon-2a.svg" alt="icon" loading="lazy">
+                                    <span><a href="#" class="text-dark"><img src="/site/images/icon-2a.svg" alt="icon" loading="lazy">
                                             {{ $blog->category->name }}</a></span>
                                 </div>
                                 <div class="ht-blog-btn mt-3 d-none">

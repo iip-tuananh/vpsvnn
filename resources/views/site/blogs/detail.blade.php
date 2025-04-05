@@ -12,7 +12,7 @@
 @section('content')
     <main>
         <!--page-title-area start-->
-        <div class="page-title-area pt-100 pb-md-60"
+        {{-- <div class="page-title-area pt-100 pb-md-60"
             data-background="/site/images/page-title-shadow-bg-1a.png">
             <img class="shape__p1" src="/site/images/ht-star-2b.svg" alt="Shape" loading="lazy">
             <img class="shape__p2" src="/site/images/ht-star-2b.svg" alt="Shape" loading="lazy">
@@ -45,10 +45,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--page-title-area end-->
         <!-- blog__details__section start -->
-        <section class="blog__details__section pt-150 pt-lg-110 pb-135 pb-lg-90">
+        <section class="blog__details__section pt-50 pt-lg-60 pb-50 pb-lg-60">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-8 col-lg-8">

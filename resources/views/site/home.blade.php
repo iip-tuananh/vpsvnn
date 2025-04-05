@@ -9,160 +9,142 @@
     {{ url('' . $banners[0]->image->path) }}
 @endsection
 @section('css')
+<style>
+    .theme__main__banner-one .nice-select {
+        width: 100%;
+        border: 2px solid;
+        /* border-image: linear-gradient(to right, #ff6737, #ff4f13) 1; */
+        border-radius: 5px;
+        line-height: 28px;
+    }
+
+    .theme__main__banner-one .domain-list {
+        position: relative;
+        width: 100%;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        grid-auto-flow: dense;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+        justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+        .theme__main__banner-one .domain-list {
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        }
+    }
+
+    .theme__main__banner-one .domain-list li {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        overflow: hidden;
+        text-align: center;
+        margin: 20px;
+        border-radius: 1rem;
+        border: 1px solid #ebebeb;
+    }
+
+    .theme__main__banner-one .custom-shadow {
+        -webkit-box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.12);
+        box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.12);
+        -webkit-transition: all 0.3s ease-in;
+        transition: all 0.3s ease-in;
+        border-radius: 1.5rem !important;
+    }
+
+    .theme__main__banner-one .custom-shadow:hover {
+        -webkit-transform: translateY(-5px);
+        transform: translateY(-5px);
+        -webkit-box-shadow: 0 1rem 3rem rgba(31, 45, 61, 0.125) !important;
+        box-shadow: 0 1rem 3rem rgba(31, 45, 61, 0.125) !important;
+    }
+
+    .theme__main__banner-one .single-domain img {
+        display: inline-block;
+        max-width: 100px;
+        min-height: 13px;
+        max-height: 34px;
+        border-radius: 50%;
+    }
+</style>
 @endsection
 @section('content')
-<main>
+<main ng-controller="HomeController" ng-cloak>
     <!-- theme__main__banner start -->
-    <section class="theme__main__banner-one position-relative pt-105 pb-150 pb-md-100">
-        <div class="shapes__1"></div>
-        <div class="shapes__2"></div>
-        <div class="shapes__3"></div>
-        <img class="shapes__4" src="/site/images/he-shape-1a.svg" alt="Shape Four">
-        <img class="shapes__5" src="/site/images/he-shape-2a.svg" alt="Shape Five">
-        <img class="shapes__6" src="/site/images/he-shape-3a.svg" alt="Shape Six">
-        <img class="shapes__7" src="/site/images/he-shape-4a.svg" alt="Shape Seven">
+    <section class="theme__main__banner-one position-relative pb-50 pt-50 pb-md-100" style="background: url('/site/images/map-bg.png') no-repeat center center;">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                     <div class="theme__content text-lg-start text-center mb-5 mb-lg-0">
-                        <h4 class="theme__subtitle">We Provide</h4>
-                        <h2>
-                            <span data-text="Best Ultrafast" class="main__title">Best Ultrafast</span>
-                            <span data-text="Hosting Solution" class="main__title">Hosting Solution</span>
-                        </h2>
-                        <p class="fw-medium">Dramatically supply transparent deliverables before caward comp
-                            internal or "organic" sources comp transparent.
-                        </p>
-                        <a href="#" class="ht_btn">Start 7 Days Trial</a>
+                        <h2 class="text-dark">Bạn muốn tìm vps nước nào ?</h2>
+                        <h5 class="theme__subtitle text-dark">Bắt đầu xây dựng thương hiệu của bạn trên internet</h5>
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-7">
+                                <select class="form-select" ng-model="selectedCategory" ng-change="redirectToCategory(selectedCategory)">
+                                    <option value="">Vui lòng chọn vps phù hợp</option>
+                                    @foreach ($productCategories as $category)
+                                    <option value="{{$category->slug}}"><a href="{{route('front.show-product-category', $category->slug)}}">{{$category->name}}</a></option>
+                                    @endforeach
+                                    <option value="vps-dat-hang" >VPS - ĐẶT HÀNG</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-primary" ng-click="redirectToCategory('vps-dat-hang')" style="height: 42px;">ĐẶT HÀNG VPS</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <div class="hero__img">
-                        <img src="/site/images/hero-img-1a.png " alt="hero__img">
+                        <img src="/site/images/dedicated-server.svg " alt="hero__img" loading="lazy">
+                        <img src="/site/images/wordpress-logo.svg " alt="hero__img" class="animation-icon-img animation-icon-5" loading="lazy">
+                    </div>
+                </div>
+            </div>
+            <div class="domain-name-block pt-100 mt--125">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <ul class="list-inline domain-list">
+                            @foreach ($productCategories as $item)
+                                <li class="list-inline-item white-bg custom-shadow">
+                                    <a href="{{route('front.show-product-category', $item->slug)}}" style="padding: 15px;">
+                                        <div class="single-domain">
+                                            <img src="{{$item->image ? $item->image->path : ''}}" alt="domain" class="img-fluid">
+                                            <div class="text-center mt-2" style="font-weight: 600;">{{$item->name}}</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- theme__maina__banner end -->
-    <!-- about__area start -->
-    <section class="about__area pt-150 pb-45 pt-lg-80">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-xl-7 col-lg-6">
-                    <div class="about__img position-relative mb-30">
-                        <img src="/site/images/about-ilus-1a.png" alt="Main" class="about__main">
-                        <div class="about__shapes-one"></div>
-                        <img class="about__shapes-two" src="/site/images/ab-star-1a.svg"
-                            alt="About Shape Two">
-                        <img class="about__shapes-three" src="/site/images/ab-star-2a.svg"
-                            alt="About Shape Three">
-                        <img class="about__shapes-four" src="/site/images/ab-star-3a.svg"
-                            alt="About Shape Four">
-                    </div>
-                </div>
-                <div class="col-xl-5 col-lg-6 ps-xxl-5">
-                    <div class="about__wrapper ps-xxl-5 mb-30" data-aos="fade-left" data-aos-delay="300">
-                        <div class="section__title mb-15">
-                            <h4 class="section__title-sub">About Us</h4>
-                            <h2 class="section__title-main">
-                                {{$config->short_name_company}}
-                            </h2>
-                            <p>
-                                {{$config->web_des}}
-                            </p>
-                        </div>
-                        <a href="{{route('front.about-us')}}" class="ht_btn">More Details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- about__area end -->
-    {{-- <!-- brand__area start -->
-    <section class="brand__area pt-75 pb-150 pt-lg-30 pb-lg-60">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section__title text-center mb-60" data-aos="fade-up" data-aos-delay="200">
-                        <h4 class="section__title-sub">Partners</h4>
-                        <h2 class="section__title-main">Over 100+ Company <br /> Trusted us</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row brand-slider-one" data-aos="fade-up" data-aos-delay="300">
-                <div class="col-2">
-                    <div class="brand__wrapper text-center">
-                        <a class="brand__logo" href="#"><img src="assets/img/brand/brand-1a.svg"
-                                alt="Brand Image"></a>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="brand__wrapper text-center">
-                        <a class="brand__logo" href="#"><img src="assets/img/brand/brand-2a.svg"
-                                alt="Brand Image"></a>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="brand__wrapper text-center">
-                        <a class="brand__logo" href="#"><img src="assets/img/brand/brand-3a.svg"
-                                alt="Brand Image"></a>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="brand__wrapper text-center">
-                        <a class="brand__logo" href="#"><img src="assets/img/brand/brand-4a.svg"
-                                alt="Brand Image"></a>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="brand__wrapper text-center">
-                        <a class="brand__logo" href="#"><img src="assets/img/brand/brand-5a.svg"
-                                alt="Brand Image"></a>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="brand__wrapper text-center">
-                        <a class="brand__logo" href="#"><img src="assets/img/brand/brand-6a.svg"
-                                alt="Brand Image"></a>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="brand__wrapper text-center">
-                        <a class="brand__logo" href="#"><img src="assets/img/brand/brand-2a.svg"
-                                alt="Brand Image"></a>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="brand__wrapper text-center">
-                        <a class="brand__logo" href="#"><img src="assets/img/brand/brand-1a.svg"
-                                alt="Brand Image"></a>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="brand__wrapper text-center">
-                        <a class="brand__logo" href="#"><img src="assets/img/brand/brand-3a.svg"
-                                alt="Brand Image"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- brand__area end --> --}}
+
     <!-- services__area start -->
-    <section class="services__area pt-100 pb-70 pt-lg-60 pb-lg-30">
+    <section class="services__area pt-50 pb-50 pt-lg-60 pb-lg-30">
         <img class="shapes__one" src="/site/images/s-pattern-1a.svg" alt="pattern">
         <img class="shapes__two" src="/site/images/s-pattern-2a.svg" alt="pattern two">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section__title text-center mb-60" data-aos="fade-up" data-aos-delay="100">
-                        <h4 class="section__title-sub">Services</h4>
+                        {{-- <h4 class="section__title-sub">Services</h4> --}}
                         <h2 class="section__title-main">Tổng quan về dịch vụ</h2>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="justify-content: center;">
                 @foreach($productCategories as $productCategory)
                 <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
                     <div class="ht-services mb-30">
@@ -174,8 +156,8 @@
                                 <img src="{{$productCategory->image ? $productCategory->image->path : ''}}" alt="cloud" class="img-fluid" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
                             </div>
                         </a>
-                        <h3 class="ht-services__title"><a href="{{route('front.show-product-category', $productCategory->slug)}}">{{$productCategory->name}}</a></h3>
-                        <p>{{$productCategory->short_des}}</p>
+                        <h3 class="ht-services__title text-dark"><a href="{{route('front.show-product-category', $productCategory->slug)}}">{{$productCategory->name}}</a></h3>
+                        <p class="text-dark">{{$productCategory->short_des}}</p>
                         <h4 class="ht-services__price mb-4">
                             <span>{{ formatCurrency($productCategory->min_sell_price) }}đ/tháng</span>
                         </h4>
@@ -189,13 +171,13 @@
     <!-- services__area end -->
     <!-- price__area start -->
     @foreach($categorySpecial as $category)
-    <section class="price__area pt-140 pb-95 pt-lg-60 pb-lg-30">
+    <section class="price__area pt-50 pb-50 pt-lg-60 pb-lg-30" style="background: linear-gradient(to bottom, #0073ec 45%, rgba(114, 2, 187, 0.25) 100%);">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section__title text-center mb-60" data-aos="fade-up" data-aos-delay="100">
-                        <h4 class="section__title-sub">Our Pricing</h4>
-                        <h2 class="section__title-main">{{$category->name}}</h2>
+                        {{-- <h4 class="section__title-sub">Our Pricing</h4> --}}
+                        <h2 class="section__title-main text-white">{{$category->name}}</h2>
                     </div>
                 </div>
             </div>
@@ -285,14 +267,14 @@
     @endforeach
     <!-- price__area end -->
     <!-- chose__area start -->
-    <section class="chose__area pt-75 pb-120 pt-lg-55 pb-lg-30">
+    <section class="chose__area pt-50 pb-50 pt-lg-55 pb-lg-30" style="background: url(/site/images/offer-bg-3.png) no-repeat center center / cover;">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-5 col-lg-6" data-aos="fade-right" data-aos-delay="100">
                     <div class="chose__content-wrapper mb-30">
                         <div class="section__title mb-40 pe-xl-3">
-                            <h4 class="section__title-sub">Why Choose Us</h4>
-                            <h2 class="section__title-main">Tại sao nên chọn chúng tôi</h2>
+                            {{-- <h4 class="section__title-sub">Why Choose Us</h4> --}}
+                            <h2 class="section__title-main text-white">Tại sao nên chọn chúng tôi</h2>
                             {{-- <p>Dynamically innovate enabled synergy vis-a-vis user friendly channels.
                                 Appropriately engage extensible supply chains before cutting-edge opportunities.
                             </p> --}}
@@ -336,14 +318,14 @@
     </section>
     <!-- chose__area end -->
     <!-- testimonial__area start -->
-    <section class="testimonial__area pt-100 pb-100 pt-lg-60 pb-lg-30">
+    <section class="testimonial__area pt-50 pb-50 pt-lg-60 pb-lg-30">
         <img class="shapes__one" src="/site/images/s-pattern-1a.svg" alt="pattern">
         <img class="shapes__two" src="/site/images/s-pattern-2a.svg" alt="pattern two">
         <div class="container">
             <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
                 <div class="col-xl-6">
                     <div class="section__title text-center mb-60">
-                        <h4 class="section__title-sub">Testimonials</h4>
+                        {{-- <h4 class="section__title-sub">Testimonials</h4> --}}
                         <h2 class="section__title-main">Đánh giá khách hàng
                         </h2>
                     </div>
@@ -367,7 +349,7 @@
                         </p>
                         {{-- <img class="author__avatar" src="assets/img/testimonial/author-1.jpg"
                             alt="autho avatar"> --}}
-                        <h3 class="author__name">
+                        <h3 class="author__name text-white">
                             {{$review->name}}
                         </h3>
                         {{-- <h5 class="author__designation">
@@ -386,21 +368,21 @@
     <!-- testimonial__area end -->
     <!-- blog__area start -->
     @foreach($categorySpecialPost as $category)
-    <section class="blog__area pt-150 pb-60 pt-lg-60">
+    <section class="blog__area pt-50 pb-50 pt-lg-60">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="section__title text-center mb-60" data-aos="fade-up" data-aos-delay="100">
-                        <h4 class="section__title-sub">Latest Blogs</h4>
+                        {{-- <h4 class="section__title-sub">Latest Blogs</h4> --}}
                         <h2 class="section__title-main">{{$category->name}}</h2>
                     </div>
                 </div>
             </div>
             <div class="row blog__slider__one">
                 @foreach($category->posts as $post)
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="ht-blog">
-                        <div class="ht-blog__thumb me-xl-3 pe-xl-1 mb-20">
+                        <div class="ht-blog__thumb mb-20">
                             <img class="w-100" src="{{$post->image ? $post->image->path : ''}}" alt="blog" loading="lazy">
                             <div class="ht-blog__date">
                                 {{ formatDate($post->created_at) }}
@@ -408,14 +390,14 @@
                         </div>
                         <div class="ht-blog__content mb-20">
                             <div class="ht-blog__meta mt-10">
-                                <span><a href="#"><img src="/site/images/icon-1a.svg" alt="icon">
+                                <span><a href="#" class="text-dark"><img src="/site/images/icon-1a.svg" alt="icon">
                                         Admin</a></span>
-                                <span><a href="#"><img src="/site/images/icon-2a.svg" alt="icon">
+                                <span><a href="#" class="text-dark"><img src="/site/images/icon-2a.svg" alt="icon">
                                         {{$post->category->name}}</a></span>
                             </div>
-                            <h3 class="blog-title"><a href="{{route('front.detail-blog', $post->slug)}}">{{$post->name}}</a>
+                            <h3 class="blog-title text-dark"><a href="{{route('front.detail-blog', $post->slug)}}">{{$post->name}}</a>
                             </h3>
-                            <p>{{$post->intro}}</p>
+                            <p class="text-dark">{{$post->intro}}</p>
                             <div class="ht-blog-btn mt-2">
                                 <a class="ht_btn" href="{{route('front.detail-blog', $post->slug)}}">Learn More</a>
                             </div>
@@ -431,4 +413,19 @@
 </main>
 @endsection
 @push('script')
+<script>
+    app.controller('HomeController', function($scope, $http) {
+        $scope.selectedCategory = '';
+        $scope.redirectToCategory = function(category) {
+            if(category == 'vps-dat-hang') {
+                $('#modal-vps-dat-hang').modal('show');
+            } else if(category == '') {
+                $scope.selectedCategory = '';
+                $scope.$applyAsync();
+            } else {
+                window.location.href = '{{route('front.show-product-category', ['categorySlug' => 'categorySlug'])}}'.replace('categorySlug', category);
+            }
+        };
+    });
+</script>
 @endpush

@@ -12,7 +12,7 @@
 @section('content')
     <main ng-controller="ContactUsController" ng-cloak>
         <!--page-title-area start-->
-        <div class="page-title-area pt-100 pb-md-60"
+        {{-- <div class="page-title-area pt-100 pb-md-60"
             data-background="/site/images/page-title-shadow-bg-1a.png">
             <img class="shape__p1" src="/site/images/ht-star-2b.svg" alt="Shape" loading="lazy">
             <img class="shape__p2" src="/site/images/ht-star-2b.svg" alt="Shape" loading="lazy">
@@ -45,10 +45,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--page-title-area end-->
         <!--contact__section start-->
-        <div class="contact__section pt-150 pb-75 pt-lg-90 pb-lg-60">
+        <div class="contact__section pt-50 pb-50 pt-lg-60 pb-lg-60">
             <div class="container">
                 <div class="contact-form mb-30">
                     <h3 class="section__title-main text-center mb-55">Gửi liên hệ đến chúng tôi</h3>
@@ -56,7 +56,7 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="input-box mb-40">
-                                    <label class="label">Name</label>
+                                    <label class="label text-dark">Name</label>
                                     <input type="text" placeholder="Enter Name" ng-model="your_name">
                                     <div class="invalid-feedback d-block error" role="alert">
                                         <span ng-if="errors && errors.your_name">
@@ -67,7 +67,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="input-box mb-40">
-                                    <label class="label">Email</label>
+                                    <label class="label text-dark">Email</label>
                                     <input type="email" placeholder="Email Address" ng-model="your_email">
                                     <div class="invalid-feedback d-block error" role="alert">
                                         <span ng-if="errors && errors.your_email">
@@ -78,7 +78,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="input-box mb-40">
-                                    <label class="label">Phone Number</label>
+                                    <label class="label text-dark">Phone Number</label>
                                     <input type="text" placeholder="Mobile Num" ng-model="your_phone">
                                     <div class="invalid-feedback d-block error" role="alert">
                                         <span ng-if="errors && errors.your_phone">
@@ -89,7 +89,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="input-box mb-40">
-                                    <label class="label">Message</label>
+                                    <label class="label text-dark">Message</label>
                                     <textarea name="message" id="message" cols="30" rows="10" placeholder="Write Your Messages" ng-model="your_message"></textarea>
                                     <div class="invalid-feedback d-block error" role="alert">
                                         <span ng-if="errors && errors.your_message">

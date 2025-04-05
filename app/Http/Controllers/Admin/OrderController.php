@@ -212,7 +212,8 @@ class OrderController extends Controller
                 $json->message = "Không tìm thấy sản phẩm!";
                 return Response::json($json);
             }
-            $count_ip_product = !Auth::user()->is_customer_vip ? $product->ip_products->count() : 1000;
+            // $count_ip_product = !Auth::user()->is_customer_vip ? $product->ip_products->count() : 1000;
+            $count_ip_product = 1000;
 
             $translate = [
                 'product.' . $key . '.quantity.min' => 'Không được nhỏ hơn 1',

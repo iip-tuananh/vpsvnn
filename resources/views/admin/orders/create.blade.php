@@ -82,7 +82,7 @@
                             <h5><% category.name %></h5>
                         </div>
                         <div class="service-item-body">
-                            <p><% category.short_des %></p>
+                            {{-- <p><% category.short_des %></p> --}}
                         </div>
                     </div>
                 </div>

@@ -251,6 +251,53 @@
                     }
                 })
             });
+
+            $scope.form_vps_dat_hang = {
+                your_name: '',
+                your_email: '',
+                your_phone: '',
+                your_message: ''
+            };
+            $scope.errors = {};
+            $scope.isLoadingFormVpsDatHang = false;
+
+            $scope.sendFormVpsDatHang = function() {
+                $scope.isLoadingFormVpsDatHang = true;
+                let data = $scope.form_vps_dat_hang;
+                jQuery.ajax({
+                    url: '{{route("front.post-contact")}}',
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': "{{csrf_token()}}"
+                    },
+                    data: data,
+                    success: function(response) {
+                        if(response.success) {
+                            toastr.success('Gửi thông tin đặt hàng thành công');
+                            $('#modal-vps-dat-hang').modal('hide');
+                            $scope.form_vps_dat_hang = {
+                                your_name: '',
+                                your_email: '',
+                                your_phone: '',
+                                your_message: ''
+                            };
+                        } else {
+                            toastr.error('Gửi thông tin đặt hàng thất bại');
+                            $scope.errors = response.errors;
+                            $scope.isLoadingFormVpsDatHang = false;
+                        }
+                    },
+                    error: function(response) {
+                        toastr.error('Gửi thông tin đặt hàng thất bại');
+                        $scope.errors = response.errors;
+                        $scope.isLoadingFormVpsDatHang = false;
+                    },
+                    complete: function() {
+                        $scope.$applyAsync();
+                    }
+                });
+            }
+
         })
 
         app.factory('cartItemSync', function ($interval) {
@@ -281,10 +328,10 @@
     </script>
 </head>
 
-<body ng-app="App" ng-controller="AppController">
+<body ng-app="App" ng-controller="AppController" ng-cloak>
     <div class="main-page-wrapper">
         <!-- preloader start -->
-        <div id="preloader">
+        {{-- <div id="preloader">
             <div id="ctn-preloader" class="ctn-preloader">
                 <div class="icon"><img src="{{$config->favicon->path ?? ''}}" alt="" class="m-auto d-block" width="60" loading="lazy">
                 </div>
@@ -309,7 +356,7 @@
                     </span>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- preloader end  -->
         <!-- offcanvas start  -->
         <div class="offcanvas offcanvas-top theme-bg" tabindex="-1" id="offcanvasTop">
@@ -384,6 +431,60 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="modal-vps-dat-hang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content modal-notify">
+                    <div class="modal-header" style="justify-content: center;">
+                        <h3 class="modal-title text-center" id="exampleModalLabel"><i class="fal fa-shopping-cart"></i> ĐẶT HÀNG VPS</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-vps-dat-hang">
+                            <div class="form-group">
+                                <label for="name">Tên <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="name" ng-model="form_vps_dat_hang.your_name">
+                                <div class="invalid-feedback d-block error" role="alert">
+                                    <span ng-if="errors && errors.your_name">
+                                        <% errors.your_name[0] %>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email" ng-model="form_vps_dat_hang.your_email">
+                                <div class="invalid-feedback d-block error" role="alert">
+                                    <span ng-if="errors && errors.your_email">
+                                        <% errors.your_email[0] %>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Số điện thoại <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="phone" ng-model="form_vps_dat_hang.your_phone">
+                                <div class="invalid-feedback d-block error" role="alert">
+                                    <span ng-if="errors && errors.your_phone">
+                                        <% errors.your_phone[0] %>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Nội dung đặt hàng <span class="text-danger">*</span><span class="text-muted"> (VD: Tên VPS, IP, CPU, RAM, HDD, ...)</span></label>
+                                <textarea class="form-control" id="message" ng-model="form_vps_dat_hang.your_message"></textarea>
+                                <div class="invalid-feedback d-block error" role="alert">
+                                    <span ng-if="errors && errors.your_message">
+                                        <% errors.your_message[0] %>
+                                    </span>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block mt-3" ng-click="sendFormVpsDatHang()" ng-disabled="isLoadingFormVpsDatHang">
+                                <i class="fal fa-paper-plane" ng-show="!isLoadingFormVpsDatHang"></i> Gửi thông tin đặt hàng
+                                <i class="fa fa-spinner fa-spin" ng-show="isLoadingFormVpsDatHang"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <style>
             #modal-login-notify .modal-content.modal-notify {
                 background: #0d153c;
@@ -400,11 +501,11 @@
                 width: 100%;
                 padding-top: 20px;
                 padding-bottom: 20px;
-                background: linear-gradient(93.42deg, #ff5c65 0%, #fd008b 53.12%, #6500fc 100%);
-                background: -moz-gradient(93.42deg, #ff5c65 0%, #fd008b 53.12%, #6500fc 100%);
-                background: -o-gradient(93.42deg, #ff5c65 0%, #fd008b 53.12%, #6500fc 100%);
-                background: -ms-gradient(93.42deg, #ff5c65 0%, #fd008b 53.12%, #6500fc 100%);
-                background: -webkit-gradient(93.42deg, #ff5c65 0%, #fd008b 53.12%, #6500fc 100%);
+                background: linear-gradient(93.42deg, #ff6737 0%, #ff4f13 53.12%, #ff3131 100%);
+                background: -moz-gradient(93.42deg, #ff6737 0%, #ff4f13 53.12%, #ff3131 100%);
+                background: -o-gradient(93.42deg, #ff6737 0%, #ff4f13 53.12%, #ff3131 100%);
+                background: -ms-gradient(93.42deg, #ff6737 0%, #ff4f13 53.12%, #ff3131 100%);
+                background: -webkit-gradient(93.42deg, #ff6737 0%, #ff4f13 53.12%, #ff3131 100%);
             }
         </style>
         <!-- shopping-cart-bar end -->

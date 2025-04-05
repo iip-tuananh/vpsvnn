@@ -1,6 +1,6 @@
 <!-- header-area start -->
 <header class="theme-main-menu theme-menu-one pt-0">
-    <div class="topbar py-3">
+    <div class="topbar py-1">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -15,6 +15,12 @@
                                 <b class="text-pink">$2.99/mo</b> for limited time</a> --}}
                         </div>
                         <div class="ht-links">
+                            <a href="" title="Vietnam">
+                                <img src="/site/images/vietnamese.png" alt="Vietnam" width="25" height="25">
+                            </a>
+                            <a href="" title="English" class="me-4">
+                                <img src="/site/images/english.png" alt="English" width="25" height="25">
+                            </a>
                             <a class="me-4 chating" href="tel:{{ str_replace(' ', '', $config->hotline)}}"><span><img width="25"
                                         src="/site/images/support-1.png" alt="icon"></span> Hỗ trợ 24/7</a>
                             @if(Auth::check())
@@ -33,7 +39,7 @@
             </div>
         </div>
     </div>
-    <div class="main-header-area pt-3">
+    <div class="main-header-area">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-2 col-sm-4 col-6">

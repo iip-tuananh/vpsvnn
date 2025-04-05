@@ -12,7 +12,7 @@
 @section('content')
 <main ng-controller="LoginClientController" ng-cloak>
     <!--page-title-area start-->
-    <div class="page-title-area pt-100 pb-md-60"
+    {{-- <div class="page-title-area pt-100 pb-md-60"
         data-background="/site/images/page-title-shadow-bg-1a.png">
         <img class="shape__p1" src="/site/images/ht-star-2b.svg" alt="Shape" loading="lazy">
         <img class="shape__p2" src="/site/images/ht-star-2b.svg" alt="Shape" loading="lazy">
@@ -45,15 +45,15 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!--page-title-area end-->
     <!--login__section start-->
-    <div class="login__section pt-150 pb-150 pt-lg-90 pb-lg-90" ng-if="formLogin">
+    <div class="login__section" ng-if="formLogin">
         <div class="container">
             <div class="form__wrapper__bg">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <div class="signup-form text-center mb-30">
+                        <div class="signup-form text-center mb-30" style="background-color: #cccc; padding: 20px; border-radius: 10px; box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.12);">
                             <h3 class="section__title-main mb-30">Đăng nhập tài khoản</h3>
                             <form id="login_client">
                                 <div class="mb-20">
@@ -80,10 +80,10 @@
                                     <button class="ht_btn" ng-click="loginClient()">Đăng nhập</button>
                                 </div>
                             </form>
-                            <p class="text-white mt-40">Bạn chưa có tài khoản? <a href="javascript:void(0)" ng-click="showFormRegister()"><b>Đăng ký
+                            <p class="text-dark mt-40">Bạn chưa có tài khoản? <a href="javascript:void(0)" ng-click="showFormRegister()"><b>Đăng ký
                                         ngay</b></a>
                             </p>
-                            <h5 class="text-white">Quên mật khẩu</h5>
+                            <h5 class="text-dark">Quên mật khẩu</h5>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -96,12 +96,12 @@
         </div>
     </div>
     <!--login__section end-->
-    <div class="signup__section pt-150 pb-150 pt-lg-90 pb-lg-90" ng-if="formRegister">
+    <div class="signup__section" ng-if="formRegister">
         <div class="container">
             <div class="form__wrapper__bg">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <div class="signup-form mb-30">
+                        <div class="signup-form mb-30" style="background-color: #cccc; padding: 20px; border-radius: 10px; box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.12);">
                         <h3 class="section__title-main mb-30">Tạo tài khoản</h3>
                         <form id="customer_register">
                             <div class="mb-20">
@@ -157,7 +157,7 @@
                             <div class="mb-20">
                                 <div class="input-check">
                                     <input type="checkbox" name="agree">
-                                    <span>Tôi đã đọc và đồng ý với điều khoản và điều kiện</span>
+                                    <span class="text-dark">Tôi đã đọc và đồng ý với điều khoản và điều kiện</span>
                                 </div>
                                 <span class="invalid-feedback d-block error" style="text-align: left;" role="alert"
                                     ng-if="errors && errors['agree']">
@@ -168,7 +168,7 @@
                                 <button class="ht_btn" ng-click="registerClient()">Đăng ký</button>
                             </div>
                         </form>
-                            <p class="text-white mt-40">Bạn đã có tài khoản? <a href="javascript:void(0)" ng-click="showFormLogin()"><b>Đăng nhập
+                            <p class="text-dark mt-40">Bạn đã có tài khoản? <a href="javascript:void(0)" ng-click="showFormLogin()"><b>Đăng nhập
                                     ngay</b></a>
                         </p>
                         </div>

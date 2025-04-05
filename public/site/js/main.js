@@ -183,14 +183,14 @@
 		loop: true,
 		autoplay: true,
 		autoplaySpeed: 2000,
-		slidesToShow: 2,
+		slidesToShow: 3,
 		slidesToScroll: 1,
 
 		responsive: [
 			{
 				breakpoint: 1024,
 				settings: {
-					slidesToShow: 2,
+					slidesToShow: 3,
 					slidesToScroll: 1,
 				}
 			},
@@ -312,7 +312,7 @@
 	});
 
 
-	//hosting__marque__slider 
+	//hosting__marque__slider
 	$('.hosting__marque__slider ').slick({
 		dots: false,
 		arrows: false,
@@ -356,7 +356,7 @@
 	});
 
 
-	//blog__classic__gallery 
+	//blog__classic__gallery
 	$('.blog__classic__gallery ').slick({
 		dots: false,
 		arrows: true,
@@ -493,7 +493,7 @@
 			scaleLength: 0,
 			size: 140,
 			trackColor: 'rgba(255, 255, 255, 0.2)',
-			barColor: '#FD008B',
+			barColor: '#ff4f13',
 			scaleColor: 'false',
 			lineWidth: 7,
 			trackWidth: 2,

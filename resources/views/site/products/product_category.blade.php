@@ -11,7 +11,7 @@
 @section('content')
     <main>
         <!--page-title-area start-->
-        <div class="page-title-area pt-100 pb-md-60"
+        {{-- <div class="page-title-area pt-100 pb-md-60"
             data-background="/site/images/page-title-shadow-bg-1a.png">
             <img class="shape__p1" src="/site/images/ht-star-2b.svg" alt="Shape" loading="lazy">
             <img class="shape__p2" src="/site/images/ht-star-2b.svg" alt="Shape" loading="lazy">
@@ -44,11 +44,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--page-title-area end-->
 
         <!-- services__area-two start -->
-        <section class="services__area-two pt-145 pb-145 pt-lg-60 pb-lg-80">
+        <section class="services__area-two pt-50 pb-50 pt-lg-60 pb-lg-80">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12" data-aos="fade-up" data-aos-delay="100">
@@ -65,16 +65,16 @@
                         <div class="col-lg-12 mb-lg-0 mb-3">
                             <div class="d-md-flex align-items-center justify-content-between">
                                 <div class=" number">{{ $product->name }}</div>
-                                <div>vCPU <br> {{ $product->cpu }} </div>
-                                <div>RAM <br> {{ $product->ram }} </div>
-                                <div>Disk space <br> {{ $product->storage }} </div>
-                                <div>Traffic <br> {{ $product->band_width }} </div>
-                                <div>IP-VPS <br> {{ $product->stream }} </div>
-                                <div>Location <br> {{ $product->origin }} </div>
+                                <div>vCPU <br> <span class="text-dark" style="font-weight: 600; font-size: 20px">{{ $product->cpu }}</span> </div>
+                                <div>RAM <br> <span class="text-dark" style="font-weight: 600; font-size: 20px">{{ $product->ram }}</span> </div>
+                                <div>Disk space <br> <span class="text-dark" style="font-weight: 600; font-size: 20px">{{ $product->storage }}</span> </div>
+                                <div>Traffic <br> <span class="text-dark" style="font-weight: 600; font-size: 20px">{{ $product->band_width }}</span> </div>
+                                <div>IP-VPS <br> <span class="text-dark" style="font-weight: 600; font-size: 20px">{{ $product->stream }}</span> </div>
+                                {{-- <div>Location <br> {{ $product->origin }} </div> --}}
                                 @if ($product->os)
-                                    <div>OS <br> {{ $product->os }} </div>
+                                    <div>OS <br> <span class="text-dark" style="font-weight: 600; font-size: 20px">{{ $product->os }}</span> </div>
                                 @endif
-                                <div>Price <br> {{ formatCurrency($product->sell_price) }}đ/tháng </div>
+                                <div>Price <br> <span class="text-dark" style="font-weight: 600; font-size: 20px">{{ formatCurrency($product->sell_price) }}đ/tháng </span> </div>
                                 <div class="services-bottom-content">
                                     <a class="ht_btn" href="javascript:void(0)" ng-click="addToCart({{$product->id}})">Đăng ký</a>
                                 </div>
@@ -86,7 +86,7 @@
         </section>
         <!-- services__area-two end -->
         <!--feature__section start-->
-        <div class="feature__section pt-150 pt-lg-100 pb-120 pb-lg-30">
+        {{-- <div class="feature__section pt-150 pt-lg-100 pb-50 pb-lg-30">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
@@ -96,7 +96,7 @@
                                 <img src="/site/images/seo.svg" alt="chose" loading="lazy">
                             </div>
                             <h4 class="ht-feature-title mb-20">Hiệu suất mạnh mẽ</h4>
-                            <p>Chúng tôi sử dụng CPU Intel Xeon dòng E3 và E5 trên các máy chủ của mình, cùng với ổ SSD trong RAID để mang đến cho bạn những máy ảo nhanh vượt trội</p>
+                            <p class="text-dark">Chúng tôi sử dụng CPU Intel Xeon dòng E3 và E5 trên các máy chủ của mình, cùng với ổ SSD trong RAID để mang đến cho bạn những máy ảo nhanh vượt trội</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="150">
@@ -106,7 +106,7 @@
                                 <img src="/site/images/seo.svg" alt="chose" loading="lazy">
                             </div>
                             <h4 class="ht-feature-title mb-20">Hệ điều hành đa dạng</h4>
-                            <p>Chúng tôi hỗ trợ nhiều hệ điều hành khác nhau bao gồm Windows Server, Windows Desktop và Linux</p>
+                            <p class="text-dark">Chúng tôi hỗ trợ nhiều hệ điều hành khác nhau bao gồm Windows Server, Windows Desktop và Linux</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
@@ -116,7 +116,7 @@
                                 <img src="/site/images/discount-label.svg" alt="chose" loading="lazy">
                             </div>
                             <h4 class="ht-feature-title mb-20">An toàn thông tin</h4>
-                            <p>Kiểm soát, ngăn chặn xâm nhập, hạn chế rủi ro hệ thống. Bảo đảm dữ liệu bảo mật và an toàn</p>
+                            <p class="text-dark">Kiểm soát, ngăn chặn xâm nhập, hạn chế rủi ro hệ thống. Bảo đảm dữ liệu bảo mật và an toàn</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="250">
@@ -126,13 +126,61 @@
                                 <img src="/site/images/monitor.svg" alt="chose" loading="lazy">
                             </div>
                             <h4 class="ht-feature-title mb-20">Hỗ trợ 24/7</h4>
-                            <p>Đội ngũ IT, Chăm sóc khách hàng chuyên nghiệp, sẵn sàng cho mọi tình huống, hỗ trợ nhanh chóng</p>
+                            <p class="text-dark">Đội ngũ IT, Chăm sóc khách hàng chuyên nghiệp, sẵn sàng cho mọi tình huống, hỗ trợ nhanh chóng</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--feature__section end-->
+        <div class="feature__section pt-150 pt-lg-100 pb-120 pb-lg-30">
+            <div class="container">
+            <div class="row justify-content-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                <div class="section__title text-center mb-50">
+                    <h4 class="section__title-sub-two">What We Are</h4>
+                    <h2 class="section__title-main">Lý do nên chọn {{ $title }}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                    <div class="ht__feature__three text-center mb-30 pt-70 mt-70">
+                        <div class="ht__feature-icon mb-30">
+                        <img src="/site/images/category-2b.svg" alt="chose" loading="lazy">
+                        </div>
+                        <h4 class="ht-feature-title mb-20 text-white">Hiệu suất mạnh mẽ</h4>
+                        <p class="text-dark">Chúng tôi sử dụng CPU Intel Xeon dòng E3 và E5 trên các máy chủ của mình, cùng với ổ SSD trong RAID để mang đến cho bạn những máy ảo nhanh vượt trội</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="150">
+                    <div class="ht__feature__three text-center mb-30 pt-70 mt-70">
+                        <div class="ht__feature-icon mb-30">
+                        <img src="/site/images/graph-2b.svg" alt="chose" loading="lazy">
+                        </div>
+                        <h4 class="ht-feature-title mb-20 text-white">Hệ điều hành đa dạng</h4>
+                        <p class="text-dark">Chúng tôi hỗ trợ nhiều hệ điều hành khác nhau bao gồm Windows Server, Windows Desktop và Linux</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                    <div class="ht__feature__three text-center mb-30 pt-70 mt-70">
+                        <div class="ht__feature-icon mb-30">
+                        <img src="/site/images/ticket-2b.svg" alt="chose" loading="lazy">
+                        </div>
+                        <h4 class="ht-feature-title mb-20 text-white">An toàn thông tin</h4>
+                        <p class="text-dark">Kiểm soát, ngăn chặn xâm nhập, hạn chế rủi ro hệ thống. Bảo đảm dữ liệu bảo mật và an toàn</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 aos-init aos-animate" data-aos="fade-up" data-aos-delay="250">
+                    <div class="ht__feature__three text-center mb-30 pt-70 mt-70">
+                        <div class="ht__feature-icon mb-30">
+                        <img src="/site/images/calling-2b.svg" alt="chose" loading="lazy">
+                        </div>
+                        <h4 class="ht-feature-title mb-20 text-white">Hỗ trợ 24/7</h4>
+                        <p class="text-dark">Đội ngũ IT, Chăm sóc khách hàng chuyên nghiệp, sẵn sàng cho mọi tình huống, hỗ trợ nhanh chóng</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
     </main>
 @endsection
 

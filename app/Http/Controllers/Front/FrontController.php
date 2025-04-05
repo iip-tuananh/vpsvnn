@@ -323,7 +323,8 @@ class FrontController extends Controller
         $rule  =  [
             'your_name' => 'required',
             'your_phone'  => 'required|regex:/^(0)[0-9]{9,11}$/',
-            'your_email'  => 'required|email|max:255'
+            'your_email'  => 'required|email|max:255',
+            'your_message' => 'required',
         ];
 
         $validate = Validator::make(
@@ -334,6 +335,8 @@ class FrontController extends Controller
                 'your_phone.required' => 'Vui lòng nhập số điện thoại',
                 'your_phone.regex' => 'Số điện thoại không đúng định dạng',
                 'your_email.required' => 'Vui lòng nhập email',
+                'your_email.email' => 'Email không đúng định dạng',
+                'your_message.required' => 'Vui lòng nhập nội dung',
             ]
         );
 
